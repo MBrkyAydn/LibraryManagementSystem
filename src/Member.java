@@ -6,9 +6,10 @@ public class Member {
    private List<Book> borrowedBooks = new ArrayList<>();
 String id;
     public Member(String name, String lastName,String id) {
-        this.id= id;
+
         this.name = name;
         this.lastName = lastName;
+        this.id= id;
         this.borrowedBooks = new ArrayList<>();
     }
 
@@ -20,8 +21,11 @@ String id;
                 ", borrowedBooks= " + borrowedBooks ;
     }
 
+    public String getId() {
+        return id;
+    }
 
-   public void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 

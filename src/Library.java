@@ -1,3 +1,6 @@
+import exception.BookNotFoundException;
+import exception.MemberAlreadyExist;
+
 import java.util.ArrayList;
 import java.util.*;
 
@@ -13,8 +16,24 @@ public class Library implements Repository<Book> {
 
     @Override
     public void remove(String id) {
-    Book book = findById(id);
-    books.remove(book);
+
+        Book book = findById(id);
+        books.remove(book);
+
+
+    }
+
+//    public Member findMemberById(String id) {
+//        for (Member member : members) {
+//            if (member.getId().equals(id)) {
+//                return member;
+//            }
+//        }
+////throw new MemberAlreadyExist(id+" Member already exist ");
+//    return true}
+
+    public void addMember(Member member) {
+
     }
 
     @Override
@@ -25,7 +44,7 @@ public class Library implements Repository<Book> {
             }
 
         }
-        return null;
+        throw new BookNotFoundException("Book with id " + id + " not found");
     }
 
 
