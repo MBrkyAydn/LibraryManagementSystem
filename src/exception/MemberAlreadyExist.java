@@ -1,6 +1,6 @@
 package exception;
 
-public class MemberAlreadyExist extends Exception {
+public class MemberAlreadyExist extends RuntimeException {
 
     public MemberAlreadyExist(String message) {
         super(message);

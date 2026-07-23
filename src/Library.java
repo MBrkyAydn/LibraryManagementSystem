@@ -23,14 +23,14 @@ public class Library implements Repository<Book> {
 
     }
 
-//    public Member findMemberById(String id) {
-//        for (Member member : members) {
-//            if (member.getId().equals(id)) {
-//                return member;
-//            }
-//        }
-////throw new MemberAlreadyExist(id+" Member already exist ");
-//    return true}
+    public Member findMemberById(String id) {
+        for (Member member : members) {
+            if (member.getId().equals(id)) {
+                return member;
+            }
+        }
+throw new MemberAlreadyExist(id+" Member already exist ");
+    }
 
     public void addMember(Member member) {
 
