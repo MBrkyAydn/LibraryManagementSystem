@@ -13,11 +13,10 @@ public class Member {
 
     @Override
     public String toString() {
-        return "Member{" +
-                "name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", borrowedBooks=" + borrowedBooks +
-                '}';
+        return "\nMember" +
+                "name= '" + name + '\'' +
+                ", lastName= '" + lastName + '\'' +
+                ", borrowedBooks= " + borrowedBooks ;
     }
 
     public void setName(String name) {

@@ -13,13 +13,12 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", pageCount=" + pageCount +
-                ", available=" + available +
-                '}';
+        return "\nBook" +
+                "id= '" + id + '\'' +
+                ", title= '" + title + '\'' +
+                ", author= '" + author + '\'' +
+                ", pageCount= " + pageCount +
+                ", available= " + available ;
     }
 
     public void setAvailable(boolean available) {

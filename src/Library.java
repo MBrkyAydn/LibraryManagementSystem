@@ -6,6 +6,7 @@ public class Library implements Repository<Book> {
 
     @Override
     public void add(Book object) {
+books.add(object);
 
     }
 
@@ -24,4 +25,8 @@ public class Library implements Repository<Book> {
     public List<Book> findAll() {
         return books;
     }
+
+
+
+
 }
