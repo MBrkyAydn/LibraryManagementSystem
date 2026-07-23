@@ -4,11 +4,12 @@ import java.util.List;
 public class Member {
     private String name, lastName;
    private List<Book> borrowedBooks = new ArrayList<>();
-
-    public Member(String name, String lastName, List<Book> borrowedBooks) {
+String id;
+    public Member(String name, String lastName,String id) {
+        this.id= id;
         this.name = name;
         this.lastName = lastName;
-        this.borrowedBooks = borrowedBooks;
+        this.borrowedBooks = new ArrayList<>();
     }
 
     @Override
@@ -19,7 +20,8 @@ public class Member {
                 ", borrowedBooks= " + borrowedBooks ;
     }
 
-    public void setName(String name) {
+
+   public void setName(String name) {
         this.name = name;
     }
 
@@ -31,9 +33,6 @@ public class Member {
         return borrowedBooks;
     }
 
-    public void setBorrowedBooks(List<Book> borrowedBooks) {
-        this.borrowedBooks = borrowedBooks;
-    }
 
     public String getName() {
         return name;
