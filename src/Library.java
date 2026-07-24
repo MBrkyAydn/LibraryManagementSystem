@@ -1,5 +1,4 @@
-import exception.BookNotFoundException;
-import exception.MemberAlreadyExist;
+import exception.*;
 
 import java.util.ArrayList;
 import java.util.*;
@@ -23,17 +22,43 @@ public class Library implements Repository<Book> {
 
     }
 
+    public void borrowBook(String memberId, String bookId) {
+        Book book = findById(bookId);
+        Member member = findMemberById(memberId);
+        if (!book.isAvailable()) {
+            throw new BookAlreadyBorrowedException("Book already borrowed");
+
+        }
+        book.setAvailable(false);
+        member.borrowBook(book);
+    }
+
+    public void addMember(Member member) {
+        for (Member m : members) {
+            if (m.getId().equals(member.getId())) {
+                throw new MemberAlreadyExist(member.getId() + " Member already exist ");
+            }
+        }
+        members.add(member);
+    }
+
+    public void returnBook(String memberId, String bookId) {
+        Book book = findById(bookId);
+        Member member = findMemberById(memberId);
+        if (book.isAvailable()) { throw new BookAlreadyExist(book.getId() + " Book already exist");
+
+        }  book.setAvailable(true);
+        member.getBorrowedBooks().remove(book);
+
+    }
+
     public Member findMemberById(String id) {
         for (Member member : members) {
             if (member.getId().equals(id)) {
                 return member;
             }
         }
-throw new MemberAlreadyExist(id+" Member already exist ");
-    }
-
-    public void addMember(Member member) {
-
+        throw new MemberNotFound("Member with id " + id + " not found");
     }
 
     @Override
