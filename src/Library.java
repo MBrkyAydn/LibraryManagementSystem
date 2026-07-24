@@ -12,7 +12,7 @@ public class Library implements Repository<Book> {
     @Override
     public void add(Book object) {
         books.add(object);
-        // aynı kitap ekleme sorunu
+
 
     }
 
@@ -95,5 +95,37 @@ public class Library implements Repository<Book> {
         return books;
     }
 
+    public void listAvailableBooks() {
 
+        books.stream().filter(Book::isAvailable).forEach(System.out::println);
+    }
+
+    public void listBookTitle() {
+        books.stream().map(Book::getTitle).forEach(System.out::println);
+    }
+
+    public void sortBook() {
+        books.stream().sorted(Comparator.comparing(Book::getTitle)).forEach(System.out::println);
+
+    }
+
+    public void countBooks() {
+        long count = books.stream().count();
+        System.out.println(count);
+    }
+
+    public boolean anyMatch(String title) {
+        return books.stream()
+                .anyMatch(book -> book.getTitle().equalsIgnoreCase(title));
+
+    }
+
+    public Book findFirst() {
+       return   books.stream().filter(Book::isAvailable).findFirst().orElse(null);
+    }
+
+    public Book searchTitle(String title) {
+       return books.stream().filter(book -> book.getTitle().equalsIgnoreCase(title)).findFirst().orElseThrow(() ->
+               new BookNotFoundException("Book not found"));
+    }
 }

@@ -6,7 +6,7 @@ import model.Member;
 import java.io.IOException;
 import java.util.Scanner;
 
-// Exception sonrası porgram kapanıyor. Örnegin silenecek kitap bulunamadıgında. // kişiye verilen kitap listelemede gözukmuyor 0 ile çıkış yapılamıyor.
+
 public class Main {
     public static void main(String[] args) {
         menu();
@@ -31,6 +31,7 @@ public class Main {
             System.out.println("7- Borrow Book");
             System.out.println("8- Return Book");
             System.out.println("9- Find Member");
+            System.out.println("10- Books Management");
             System.out.println("0- Exit");
             choice = input.nextInt();
             input.nextLine();
@@ -81,7 +82,8 @@ public class Main {
                 case 7:
                     try {
                         borrowBook();
-                    } catch (BookAlreadyBorrowedException | MemberNotFound | BookNotFoundException e) { // alreadybarrow çalışmıyort.
+                    } catch (BookAlreadyBorrowedException | MemberNotFound |
+                             BookNotFoundException e) { // alreadybarrow çalışmıyort.
                         System.out.println(e.getMessage());
                     }
                     break;
@@ -105,6 +107,8 @@ public class Main {
                     System.exit(0);
 
                     break;
+                case 10:
+                    menu2();
                 default:
                     System.out.println("İnvalid İnput");
 
@@ -136,10 +140,7 @@ public class Main {
     }
 
     public static void listBooks() {
-        for (Book book : library.findAll()) {
-            System.out.println(book);
-
-        }
+        library.findAll().forEach(System.out::println);
 
 
     }
@@ -195,7 +196,92 @@ public class Main {
 
     }  // gösteriyor ama notfound da atıyor
 
+    public static void menu2() {
+        int choice;
+        while (true) {
+            System.out.println("-*-*-*-* Book Management Menu-*-*-*-*");
+            System.out.println("1- List avaible books");
+            System.out.println("2- List Book Title");
+            System.out.println("3- Sort books");
+            System.out.println("4- Count books");
+            System.out.println("5- Any match");
+            System.out.println("6- Search Title");
+            System.out.println("7- First");
+            System.out.println("0- Exit");
+            choice = input.nextInt();
+            try {
+                switch (choice) {
+                    case 0:
+                        return;
+                    case 1:
 
+                        listAvaible();
+                        break;
+                    case 6:
+                        searchBook();
+                        break;
+                    case 5:
+                        anymatch();
+                        break;
+                    case 4:
+                        count();
+                        break;
+                    case 2:
+                        listTitle();
+                        break;
+                    case 3:
+                        sort();
+                        break;
+                    case 7:
+                        first();
+                        break;
+                }
+            } catch (BookNotFoundException e) {
+                System.out.println(e.getMessage());
+            }
+
+
+        }
+    }
+
+    public static void listAvaible() {
+
+        library.listAvailableBooks();
+    }
+
+    public static void searchBook() {
+        ;
+        String title = InputHelper.getValidString("Title: ");
+        Book book = library.searchTitle(title);
+        System.out.println(book);
+
+    }
+
+    public static void anymatch() {
+
+        String title = InputHelper.getValidString("Title: ");
+        Book book = library.searchTitle(title);
+        System.out.println(book);
+
+
+    }
+
+    public static void count() {
+        library.countBooks();
+    }
+
+    public static void listTitle() {
+        library.listBookTitle();
+    }
+
+    public static void sort() {
+        library.sortBook();
+    }
+
+    public static void first() {
+        Book book = library.findFirst();
+        System.out.println(book);
+    }
 }
 
 
