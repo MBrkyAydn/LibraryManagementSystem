@@ -12,6 +12,7 @@ public class Library implements Repository<Book> {
     @Override
     public void add(Book object) {
         books.add(object);
+        // aynı kitap ekleme sorunu
 
     }
 
@@ -28,7 +29,7 @@ public class Library implements Repository<Book> {
         Book book = findById(bookId);
         Member member = findMemberById(memberId);
         if (!book.isAvailable()) {
-            throw new BookAlreadyBorrowedException("model.Book already borrowed");
+            throw new BookAlreadyBorrowedException(" Book already borrowed");
 
         }
         book.setAvailable(false);
@@ -38,7 +39,7 @@ public class Library implements Repository<Book> {
     public void addMember(Member member) {
         for (Member m : members) {
             if (m.getId().equals(member.getId())) {
-                throw new MemberAlreadyExist(member.getId() + " model.Member already exist ");
+                throw new MemberAlreadyExist(member.getId() + " Member already exist ");
             }
         }
         members.add(member);
@@ -47,9 +48,11 @@ public class Library implements Repository<Book> {
     public void returnBook(String memberId, String bookId) {
         Book book = findById(bookId);
         Member member = findMemberById(memberId);
-        if (book.isAvailable()) { throw new BookAlreadyExist(book.getId() + " model.Book already exist");
+        if (book.isAvailable()) {
+            throw new BookAlreadyExist(book.getId() + " Book already exist");
 
-        }  book.setAvailable(true);
+        }
+        book.setAvailable(true);
         member.getBorrowedBooks().remove(book);
 
     }
@@ -60,7 +63,7 @@ public class Library implements Repository<Book> {
                 return member;
             }
         }
-        throw new MemberNotFound("model.Member with id " + id + " not found");
+        throw new MemberNotFound("Member with id " + id + " not found");
     }
 
     @Override
@@ -71,12 +74,24 @@ public class Library implements Repository<Book> {
             }
 
         }
-        throw new BookNotFoundException("model.Book with id " + id + " not found");
+        throw new BookNotFoundException("Book with id " + id + " not found");
     }
 
+    public void listMember() {
+        if (members.isEmpty()) {
+            throw new MemberNotFound("Member not found");
+        }
+        for (Member member : members) {
+            System.out.println(member);
+        }
+    }
 
     @Override
     public List<Book> findAll() {
+        if (books.isEmpty()) {
+            throw new BookNotFoundException("Books not found");
+        }
+
         return books;
     }
 

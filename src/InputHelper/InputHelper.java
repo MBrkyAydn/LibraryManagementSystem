@@ -13,7 +13,7 @@ public class InputHelper {
             if (!input.isEmpty()) {
                 return input;
             }
-            System.out.println("message");
+            System.out.println("Invalid Input");
         }
 
     }
