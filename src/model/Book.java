@@ -1,3 +1,5 @@
+package model;
+
 public class Book {
     private String id, title, author;
     private int pageCount;
@@ -13,12 +15,15 @@ public class Book {
 
     @Override
     public String toString() {
-        return "\nBook" +
-                "id= '" + id + '\'' +
-                ", title= '" + title + '\'' +
-                ", author= '" + author + '\'' +
-                ", pageCount= " + pageCount +
-                ", available= " + available ;
+        return """
+            -------------------------
+            ID         : %s
+            Title      : %s
+            Author     : %s
+            Page Count : %d
+            Available  : %s
+            -------------------------
+            """.formatted(id, title, author, pageCount, available);
     }
 
     public void setAvailable(boolean available) {

@@ -1,5 +1,8 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Member {
     private String name, lastName;
@@ -15,12 +18,18 @@ String id;
 public void borrowBook(Book book) {
         borrowedBooks.add(book);
 }
+
     @Override
     public String toString() {
-        return "\nMember" +
-                "name= '" + name + '\'' +
-                ", lastName= '" + lastName + '\'' +
-                ", borrowedBooks= " + borrowedBooks ;
+        return """
+            -------------------------
+            ID         : %s
+            Name      : %s
+            Last Name     : %s
+            Borrowed Book : %s
+            -------------------------
+            """.formatted(id, name,lastName ,borrowedBooks);
+
     }
 
     public String getId() {

@@ -1,4 +1,6 @@
 import exception.*;
+import model.Book;
+import model.Member;
 
 import java.util.ArrayList;
 import java.util.*;
@@ -26,7 +28,7 @@ public class Library implements Repository<Book> {
         Book book = findById(bookId);
         Member member = findMemberById(memberId);
         if (!book.isAvailable()) {
-            throw new BookAlreadyBorrowedException("Book already borrowed");
+            throw new BookAlreadyBorrowedException("model.Book already borrowed");
 
         }
         book.setAvailable(false);
@@ -36,7 +38,7 @@ public class Library implements Repository<Book> {
     public void addMember(Member member) {
         for (Member m : members) {
             if (m.getId().equals(member.getId())) {
-                throw new MemberAlreadyExist(member.getId() + " Member already exist ");
+                throw new MemberAlreadyExist(member.getId() + " model.Member already exist ");
             }
         }
         members.add(member);
@@ -45,7 +47,7 @@ public class Library implements Repository<Book> {
     public void returnBook(String memberId, String bookId) {
         Book book = findById(bookId);
         Member member = findMemberById(memberId);
-        if (book.isAvailable()) { throw new BookAlreadyExist(book.getId() + " Book already exist");
+        if (book.isAvailable()) { throw new BookAlreadyExist(book.getId() + " model.Book already exist");
 
         }  book.setAvailable(true);
         member.getBorrowedBooks().remove(book);
@@ -58,7 +60,7 @@ public class Library implements Repository<Book> {
                 return member;
             }
         }
-        throw new MemberNotFound("Member with id " + id + " not found");
+        throw new MemberNotFound("model.Member with id " + id + " not found");
     }
 
     @Override
@@ -69,7 +71,7 @@ public class Library implements Repository<Book> {
             }
 
         }
-        throw new BookNotFoundException("Book with id " + id + " not found");
+        throw new BookNotFoundException("model.Book with id " + id + " not found");
     }
 
 
