@@ -83,7 +83,7 @@ public class Main {
                     try {
                         borrowBook();
                     } catch (BookAlreadyBorrowedException | MemberNotFound |
-                             BookNotFoundException e) { // alreadybarrow çalışmıyort.
+                             BookNotFoundException e) { 
                         System.out.println(e.getMessage());
                     }
                     break;
@@ -194,7 +194,7 @@ public class Main {
     public static void listMember() {
         library.listMember();
 
-    }  // gösteriyor ama notfound da atıyor
+    }  
 
     public static void menu2() {
         int choice;
